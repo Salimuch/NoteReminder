@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LlP-Hd-iHo">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Note Editor View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="NoteEditorViewController" customModule="NoteReminder" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8jX-Uw-I09">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="JCC-u9-14J"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="setUpDateTimeReminder:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="sB0-fh-Fmu"/>
+                                </connections>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QRI-nK-ZWf">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="8jX-Uw-I09" secondAttribute="leading" id="3OP-q2-DWM"/>
+                            <constraint firstItem="8jX-Uw-I09" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="8ym-aU-HTe"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QRI-nK-ZWf" secondAttribute="bottom" constant="8" symbolic="YES" id="B1L-yA-1OX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QRI-nK-ZWf" secondAttribute="trailing" id="M2q-OR-LeG"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="QRI-nK-ZWf" secondAttribute="leading" id="Rzi-YP-1SS"/>
+                            <constraint firstItem="QRI-nK-ZWf" firstAttribute="top" secondItem="8jX-Uw-I09" secondAttribute="bottom" constant="8" symbolic="YES" id="jSv-1D-Mpq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8jX-Uw-I09" secondAttribute="trailing" id="pJm-HY-e5a"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qOq-kX-gd8">
+                        <barButtonItem key="leftBarButtonItem" title="Отменить" id="7go-aw-jSJ">
+                            <connections>
+                                <action selector="cancelNote:" destination="BYZ-38-t0r" id="W87-MD-oPV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Сохранить" style="done" id="3TU-oj-DEH">
+                            <connections>
+                                <segue destination="FCE-wL-Fs8" kind="unwind" identifier="UnwindToRemindersTable" unwindAction="setNotesWithSegue:" id="hvB-n2-kO0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dateTimeReminder" destination="8jX-Uw-I09" id="diD-Jf-gSe"/>
+                        <outlet property="saveButton" destination="3TU-oj-DEH" id="z70-Js-9gG"/>
+                        <outlet property="textView" destination="QRI-nK-ZWf" id="qvA-mf-rZa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="FCE-wL-Fs8" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2332" y="161"/>
+        </scene>
+        <!--Напоминания-->
+        <scene sceneID="AlZ-PS-8JU">
+            <objects>
+                <tableViewController id="SST-Jx-S14" customClass="TimeReminderTableViewController" customModule="NoteReminder" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="3aW-6Z-ifE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NoteReminderCell" rowHeight="60" id="cM6-v9-PKB" customClass="TimeReminderCell" customModule="NoteReminder" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cM6-v9-PKB" id="X9i-i2-Zpb">
+                                    <frame key="frameInset" width="342" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="r2w-Ex-MK9">
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w2M-R2-7cK">
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сегодня" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBF-Ws-rBy">
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="21:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6k-sN-gT3">
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="lUT-av-W99"/>
+                                                        <constraint firstAttribute="width" constant="75" id="tmz-9e-8uS"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Не забыть заехать в магазин за продуктами" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="dOJ-wk-hDZ">
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="r2w-Ex-MK9" secondAttribute="bottom" id="YQu-Yy-bFh"/>
+                                        <constraint firstItem="r2w-Ex-MK9" firstAttribute="top" secondItem="X9i-i2-Zpb" secondAttribute="topMargin" id="auf-Lp-Be8"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="r2w-Ex-MK9" secondAttribute="trailing" id="nHn-Vo-Ubu"/>
+                                        <constraint firstItem="r2w-Ex-MK9" firstAttribute="leading" secondItem="X9i-i2-Zpb" secondAttribute="leadingMargin" id="owX-SE-XlT"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bodyReminder" destination="dOJ-wk-hDZ" id="RE2-jj-8Dt"/>
+                                    <outlet property="dateReminder" destination="kBF-Ws-rBy" id="rwA-Ef-gBc"/>
+                                    <outlet property="timeReminder" destination="Z6k-sN-gT3" id="EXY-VL-HYz"/>
+                                    <segue destination="E6Z-G7-1j9" kind="show" identifier="ToEditNote" id="vuY-nH-VIW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SST-Jx-S14" id="7wB-Oc-Ru0"/>
+                            <outlet property="delegate" destination="SST-Jx-S14" id="ohO-CU-BfI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Напоминания" id="c7z-fz-IsN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="en7-14-sVb">
+                            <connections>
+                                <segue destination="E6Z-G7-1j9" kind="presentation" identifier="ToNewNote" id="AvE-LL-xoJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zTC-XF-2sq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="895.20000000000005" y="160.56971514242881"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IOb-r6-Ar5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LlP-Hd-iHo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xKy-F0-uZR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SST-Jx-S14" kind="relationship" relationship="rootViewController" id="z9O-ej-fRg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nFF-hw-06H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-44" y="160.56971514242881"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NLV-VN-kGg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="E6Z-G7-1j9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ab9-eN-JPr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="neI-9u-Qod"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="25e-rN-RWE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1612" y="161.46926536731635"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vuY-nH-VIW"/>
+    </inferredMetricsTieBreakers>
+</document>
